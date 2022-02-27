@@ -1,4 +1,7 @@
-﻿namespace WebApiVehiculos
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+
+namespace WebApiVehiculos
 {
     public class Startup
     {
@@ -13,8 +16,14 @@
         {
             services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            services.AddDbContext<ApplicationDbContext>(options =>
+            options.UseSqlServer(Configuration.GetConnectionString("defaultConnection")));
+
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApiVehiculos", Version = "v1" });
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment end)
