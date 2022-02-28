@@ -18,7 +18,7 @@ namespace WebApiVehiculos.Controllers
         [HttpGet]
         public async Task<ActionResult<List<Vehiculo>>> Get()
         {
-            return await dbContext.Vehiculos.ToListAsync();
+            return await dbContext.Vehiculos.Include(x => x.Tipos).ToListAsync();
         }
 
         [HttpPost]

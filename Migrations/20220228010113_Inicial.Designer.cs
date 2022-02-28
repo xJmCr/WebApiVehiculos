@@ -11,7 +11,7 @@ using WebApiVehiculos;
 namespace WebApiVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220227194858_Inicial")]
+    [Migration("20220228010113_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
