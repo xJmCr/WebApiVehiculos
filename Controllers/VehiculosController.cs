@@ -16,9 +16,49 @@ namespace WebApiVehiculos.Controllers
         }
 
         [HttpGet]
+        [HttpGet("listado")]
+        [HttpGet("/listado")]
         public async Task<ActionResult<List<Vehiculo>>> Get()
         {
             return await dbContext.Vehiculos.Include(x => x.Tipos).ToListAsync();
+        }
+
+        [HttpGet("primero")]
+        public async Task<ActionResult<Vehiculo>> PrimerVehiculo([FromHeader] int valor, [FromQuery] string vehiculo, [FromQuery] int vehiculoId)
+        {
+            return await dbContext.Vehiculos.FirstOrDefaultAsync();
+        }
+
+        [HttpGet("primero2")]
+        public ActionResult<Vehiculo> PrimerVehiculo()
+        {
+            return new Vehiculo() { Nombre = "Ferrari" };
+        }
+
+        [HttpGet("{id:int}/{param=BMW}")]
+        public async Task<ActionResult<Vehiculo>> Get(int id, string param)
+        {
+            var vehiculo = await dbContext.Vehiculos.FirstOrDefaultAsync(x => x.Id == id);
+
+            if(vehiculo == null)
+            {
+                return NotFound();
+            }
+
+            return vehiculo;
+        }
+
+        [HttpGet("{nombre}")]
+        public async Task<ActionResult<Vehiculo>> Get([FromRoute] string nombre)
+        {
+            var vehiculo = await dbContext.Vehiculos.FirstOrDefaultAsync(x => x.Nombre.Contains(nombre));
+
+            if(vehiculo == null)
+            {
+                return NotFound();
+            }
+
+            return vehiculo;
         }
 
         [HttpPost]

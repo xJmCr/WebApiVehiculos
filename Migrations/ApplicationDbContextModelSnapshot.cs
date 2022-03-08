@@ -64,7 +64,7 @@ namespace WebApiVehiculos.Migrations
             modelBuilder.Entity("WebApiVehiculos.Entidades.Tipo", b =>
                 {
                     b.HasOne("WebApiVehiculos.Entidades.Vehiculo", "Vehiculo")
-                        .WithMany("Tipo")
+                        .WithMany("Tipos")
                         .HasForeignKey("VehiculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -74,7 +74,7 @@ namespace WebApiVehiculos.Migrations
 
             modelBuilder.Entity("WebApiVehiculos.Entidades.Vehiculo", b =>
                 {
-                    b.Navigation("Tipo");
+                    b.Navigation("Tipos");
                 });
 #pragma warning restore 612, 618
         }

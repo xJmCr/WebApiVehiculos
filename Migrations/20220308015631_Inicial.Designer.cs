@@ -11,8 +11,8 @@ using WebApiVehiculos;
 namespace WebApiVehiculos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220228011721_Tipos")]
-    partial class Tipos
+    [Migration("20220308015631_Inicial")]
+    partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -66,7 +66,7 @@ namespace WebApiVehiculos.Migrations
             modelBuilder.Entity("WebApiVehiculos.Entidades.Tipo", b =>
                 {
                     b.HasOne("WebApiVehiculos.Entidades.Vehiculo", "Vehiculo")
-                        .WithMany("Tipo")
+                        .WithMany("Tipos")
                         .HasForeignKey("VehiculoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -76,7 +76,7 @@ namespace WebApiVehiculos.Migrations
 
             modelBuilder.Entity("WebApiVehiculos.Entidades.Vehiculo", b =>
                 {
-                    b.Navigation("Tipo");
+                    b.Navigation("Tipos");
                 });
 #pragma warning restore 612, 618
         }

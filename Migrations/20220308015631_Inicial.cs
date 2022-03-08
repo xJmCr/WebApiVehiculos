@@ -4,10 +4,23 @@
 
 namespace WebApiVehiculos.Migrations
 {
-    public partial class Tipos : Migration
+    public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Vehiculos",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehiculos", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Tipos",
                 columns: table => new
@@ -39,6 +52,9 @@ namespace WebApiVehiculos.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Tipos");
+
+            migrationBuilder.DropTable(
+                name: "Vehiculos");
         }
     }
 }

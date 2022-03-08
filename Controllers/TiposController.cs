@@ -5,7 +5,7 @@ using WebApiVehiculos.Entidades;
 namespace WebApiVehiculos.Controllers
 {
     [ApiController]
-    [Route("api/clases")]
+    [Route("api/tipos")]
     public class TiposController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
@@ -16,6 +16,7 @@ namespace WebApiVehiculos.Controllers
         }
 
         [HttpGet]
+        [HttpGet("/listadoTipos")]
         public async Task<ActionResult<List<Tipo>>> GetAll()
         {
             return await dbContext.Tipos.ToListAsync();

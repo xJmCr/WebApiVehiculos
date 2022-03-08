@@ -3242,24 +3242,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jmanu\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Luis.000\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\jmanu\\source\\repos\\WebApiVehiculos\\WebApiVehiculos\\WebApiVehiculos.csproj",
+      "projectUniqueName": "C:\\Users\\Luis.000\\source\\repos\\WebApiVehiculos\\WebApiVehiculos\\WebApiVehiculos.csproj",
       "projectName": "WebApiVehiculos",
-      "projectPath": "C:\\Users\\jmanu\\source\\repos\\WebApiVehiculos\\WebApiVehiculos\\WebApiVehiculos.csproj",
-      "packagesPath": "C:\\Users\\jmanu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\jmanu\\source\\repos\\WebApiVehiculos\\WebApiVehiculos\\obj\\",
+      "projectPath": "C:\\Users\\Luis.000\\source\\repos\\WebApiVehiculos\\WebApiVehiculos\\WebApiVehiculos.csproj",
+      "packagesPath": "C:\\Users\\Luis.000\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Luis.000\\source\\repos\\WebApiVehiculos\\WebApiVehiculos\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\jmanu\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Luis.000\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
