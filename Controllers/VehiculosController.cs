@@ -1,25 +1,72 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApiVehiculos.Entidades;
+using WebApiVehiculos.Filtros;
+using WebApiVehiculos.Services;
 
 namespace WebApiVehiculos.Controllers
 {
     [ApiController]
     [Route("api/vehiculos")]
+    //[Authorize]
     public class VehiculosController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly IService service;
+        private readonly ServiceTransient serviceTransient;
+        private readonly ServiceScoped serviceScoped;
+        private readonly ServiceSingleton serviceSingleton;
+        private readonly ILogger<VehiculosController> logger;
 
-        public VehiculosController(ApplicationDbContext context)
+        public VehiculosController(ApplicationDbContext context, IService service,
+            ServiceTransient serviceTransient, ServiceScoped serviceScoped,
+            ServiceSingleton serviceSingleton, ILogger<VehiculosController> logger)
         {
             this.dbContext = context;
+            this.service = service;
+            this.serviceTransient = serviceTransient;
+            this.serviceScoped = serviceScoped;
+            this.serviceSingleton = serviceSingleton;
+            this.logger = logger;
+        }
+
+        [HttpGet("GUID")]
+        //[ResponseCache(Duration = 10)]
+        [ServiceFilter(typeof(FiltroDeAccion))]
+        public ActionResult ObtenerGuid()
+        {
+            return Ok(new
+            {
+                AlumnosControllerTransient = serviceTransient.guid,
+                ServiceA_Transient = service.GetTransient(),
+                AlumnosControllerScoped = serviceScoped.guid,
+                ServiceA_Scoped = service.GetScoped(),
+                AlumnosControllerSingleton = serviceSingleton.guid,
+                ServiceA_Singleton = service.GetSingleton()
+            });
         }
 
         [HttpGet]
         [HttpGet("listado")]
         [HttpGet("/listado")]
+        //[ResponseCache(Duration = 10)]
+        //[Authorize]
+        [ServiceFilter(typeof(FiltroDeAccion))]
         public async Task<ActionResult<List<Vehiculo>>> Get()
         {
+            //* Niveles de logs
+            // Critical
+            // Error
+            // Warning
+            // Information
+            // Debug
+            // Trace
+            // *//
+            throw new NotImplementedException();
+            logger.LogInformation("Se obtiene el listado de alumnos");
+            logger.LogWarning("Mensaje de prueba warning");
+            service.EjecutarJob();
             return await dbContext.Vehiculos.Include(x => x.Tipos).ToListAsync();
         }
 
@@ -62,8 +109,17 @@ namespace WebApiVehiculos.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Post(Vehiculo vehiculo)
+        public async Task<ActionResult> Post([FromBody] Vehiculo vehiculo)
         {
+            //Ejemplo para validar desde el controlador con la BD con ayuda del dbContext
+
+            var existeVehiculoMismoNombre = await dbContext.Vehiculos.AnyAsync(x => x.Nombre == vehiculo.Nombre);
+
+            if (existeVehiculoMismoNombre)
+            {
+                return BadRequest("Ya existe un autor con el nombre");
+            }
+
             dbContext.Add(vehiculo);
             await dbContext.SaveChangesAsync();
             return Ok();

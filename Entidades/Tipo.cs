@@ -1,4 +1,6 @@
-﻿namespace WebApiVehiculos.Entidades
+﻿using WebApiVehiculos.Validaciones;
+
+namespace WebApiVehiculos.Entidades
 {
     public class Tipo
     {

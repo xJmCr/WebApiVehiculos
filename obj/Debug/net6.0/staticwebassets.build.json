@@ -1,11 +1,19 @@
 {
   "Version": 1,
-  "Hash": "kO2rNUSZYxWN3J/4UmEEojUbTqFJOS3dWUQPzzH8ERI=",
+  "Hash": "QSBXzhgYbzDUE3Lpd6w7sboIKlQoxKFaJHhUebI77JY=",
   "Source": "WebApiVehiculos",
   "BasePath": "_content/WebApiVehiculos",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "WebApiVehiculos\\wwwroot",
+      "Source": "WebApiVehiculos",
+      "ContentRoot": "C:\\Users\\Propietario\\Downloads\\COSAS MANUEL\\WebApiVehiculos\\WebApiVehiculos\\wwwroot\\",
+      "BasePath": "_content/WebApiVehiculos",
+      "Pattern": "**"
+    }
+  ],
   "Assets": []
 }

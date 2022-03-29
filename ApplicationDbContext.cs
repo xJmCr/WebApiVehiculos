@@ -13,5 +13,7 @@ namespace WebApiVehiculos
         public DbSet<Vehiculo> Vehiculos { get; set; }
 
         public DbSet<Tipo> Tipos { get; set; }
+
+        //public DbSet<AlumnoClase> AlumnoClase { get; set; }
     }
 }

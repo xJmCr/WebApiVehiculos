@@ -9,22 +9,26 @@ namespace WebApiVehiculos.Controllers
     public class TiposController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
+        private readonly ILogger<TiposController> log;
 
-        public TiposController (ApplicationDbContext context)
+        public TiposController (ApplicationDbContext context, ILogger<TiposController> log)
         {
             this.dbContext = context;
+            this.log = log;
         }
 
         [HttpGet]
         [HttpGet("/listadoTipos")]
         public async Task<ActionResult<List<Tipo>>> GetAll()
         {
+            log.LogInformation("Obteniendo listado de tipos.");
             return await dbContext.Tipos.ToListAsync();
         }
 
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Tipo>> GetById(int id)
         {
+            log.LogInformation("El ID es: " + id);
             return await dbContext.Tipos.FirstOrDefaultAsync(x => x.Id == id);
         }
 
